@@ -65,6 +65,8 @@ const updateSaleOrder = (req, res) => __awaiter(void 0, void 0, void 0, function
     const { error, value } = sale_orders_1.default.validate({
         id,
         customer,
+        deliveryAddress,
+        paymentMethod,
     });
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
@@ -95,6 +97,7 @@ const updateSaleOrderItems = (id, items) => __awaiter(void 0, void 0, void 0, fu
                 product,
                 quantity,
                 price,
+                saleOrderId: id,
             });
             if (error)
                 return;

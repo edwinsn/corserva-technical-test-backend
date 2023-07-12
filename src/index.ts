@@ -1,9 +1,11 @@
 import express, { Request, Response } from "express";
 import routes from "./routes";
 import errorHandler from "./middlewares/errorHandler";
+const cors = require('cors');
 
 const app = express();
 
+app.use(cors("*"))
 app.use(express.json());
 app.use(
   express.urlencoded({ extended: true, parameterLimit: 5000, limit: "50mb" })

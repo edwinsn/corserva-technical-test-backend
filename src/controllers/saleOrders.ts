@@ -67,6 +67,8 @@ export const updateSaleOrder = async (req: Request, res: Response) => {
   const { error, value } = saleOrderValidator.validate({
     id,
     customer,
+    deliveryAddress,
+    paymentMethod,
   });
 
   if (error) {
@@ -78,7 +80,6 @@ export const updateSaleOrder = async (req: Request, res: Response) => {
     return res.status(404).json({ message: "Sale order not found" });
 
   await saleOrder.update(value);
-
   await updateSaleOrderItems(Number(id), items);
 
   return res.status(200).json(saleOrder);
@@ -115,6 +116,7 @@ const updateSaleOrderItems = async (
           product,
           quantity,
           price,
+          saleOrderId: id,
         });
 
         if (error) return;

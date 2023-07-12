@@ -7,11 +7,7 @@ const schema = Joi.object({
     then: Joi.optional(),
     otherwise: Joi.required(),
   }),
-  deliveryAddress: Joi.string().when("id", {
-    is: Joi.exist(),
-    then: Joi.optional(),
-    otherwise: Joi.required(),
-  }),
+  deliveryAddress: Joi.string().optional().allow(""),
   paymentMethod: Joi.string()
     .valid("Cash", "Credit Card", "Debit Card")
     .when("id", {

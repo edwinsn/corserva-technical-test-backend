@@ -11,11 +11,7 @@ const schema = joi_1.default.object({
         then: joi_1.default.optional(),
         otherwise: joi_1.default.required(),
     }),
-    deliveryAddress: joi_1.default.string().when("id", {
-        is: joi_1.default.exist(),
-        then: joi_1.default.optional(),
-        otherwise: joi_1.default.required(),
-    }),
+    deliveryAddress: joi_1.default.string().optional().allow(""),
     paymentMethod: joi_1.default.string()
         .valid("Cash", "Credit Card", "Debit Card")
         .when("id", {
